@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# TODO(cliente): cambiar a https://aberturaspatagonicas.com.ar cuando este
+# comprado el dominio (junto con VITE_SITE_URL en .env).
+Sitemap: https://aberturaspatagonicas.netlify.app/sitemap.xml

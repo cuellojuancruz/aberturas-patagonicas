@@ -1,0 +1,122 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   TOKENS DE MARCA — Aberturas Patagonicas
+   Fuente: hoja de identidad visual 01. No agregar colores fuera
+   de este bloque: si hace falta un tono nuevo, se define aca.
+   ============================================================ */
+@theme {
+  /* --- paleta funcional --- */
+  --color-charcoal: #2f2f2f; /* principal: texto, bandas oscuras */
+  --color-wheat: #c8aa6f; /* acento: fondo de boton, reglas    */
+  --color-wheat-deep: #7f6229; /* derivado: acento COMO TEXTO en claro */
+  --color-sand: #e3d5bb; /* apoyo: superficies alternas        */
+  --color-ivory: #f7f4ed; /* fondo por defecto del sitio        */
+
+  /* --- neutrales derivados (calidos, sesgados al dorado) --- */
+  --color-ink: #2f2f2f;
+  --color-ink-soft: #6b6660; /* 5.2:1 sobre ivory — texto secundario */
+  --color-ink-mute: #726d65; /* 4.7:1 sobre ivory — metadatos        */
+  --color-line: #e3daca;
+  --color-line-strong: #cfc3a9;
+  --color-on-dark: #f1ede4;
+  --color-on-dark-soft: #b4aea2;
+
+  /* --- tipografia --- */
+  --font-display: 'Open Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: 'Roboto', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* --- forma --- */
+  --radius-field: 6px;
+  --radius-card: 12px;
+  --radius-panel: 20px;
+
+  --shadow-soft: 0 1px 2px rgba(47, 47, 47, 0.05);
+  --shadow-lift: 0 14px 34px -18px rgba(47, 47, 47, 0.35);
+
+  --ease-brand: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* compensa el navbar sticky al saltar a un ancla */
+    scroll-padding-top: 88px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  /* Foco visible en TODO lo interactivo. No sacar. */
+  :focus-visible {
+    outline: 2px solid var(--color-wheat);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Cifras y medidas alineadas en columnas (fichas tecnicas) */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ============================================================
+   ANIMACION DE ENTRADA (componente <Reveal/>)
+   Solo se activa si el documento tiene la clase .js, que agrega
+   el script inline de index.html. Sin JS, todo queda visible.
+   ============================================================ */
+@layer components {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.45s var(--ease-brand),
+      transform 0.45s var(--ease-brand);
+  }
+
+  .js [data-reveal='in'] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

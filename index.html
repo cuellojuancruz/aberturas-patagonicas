@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2F2F2F" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!--
+      Marca el documento como "con JS" antes del primer paint.
+      Las animaciones de entrada solo se aplican si esta clase existe, asi que
+      el HTML estatico que ve Google (y cualquiera con JS desactivado) muestra
+      todo el contenido visible, sin depender de que corra el observer.
+    -->
+    <script>
+      document.documentElement.classList.add('js')
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
